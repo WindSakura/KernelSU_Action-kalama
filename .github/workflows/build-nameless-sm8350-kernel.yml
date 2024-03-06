@@ -1,7 +1,7 @@
-name: Build LineageOS SM8250 Kernel
+name: Build Nameless SM8350 Kernel
 on:
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Prepare Configuration
       run: |
-        CONFIG_ENV=$(cat lineageos_oplus_sm8250_config.env | grep -w "CONFIG_ENV" | head -n 1 | cut -d "=" -f 2)
+        CONFIG_ENV=$(cat nameless_sm8350_config.env | grep -w "CONFIG_ENV" | head -n 1 | cut -d "=" -f 2)
         echo "KERNEL_SOURCE=$(cat $CONFIG_ENV | grep -w "KERNEL_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "KERNEL_SOURCE_BRANCH=$(cat $CONFIG_ENV | grep -w "KERNEL_SOURCE_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "KERNEL_CONFIG=$(cat $CONFIG_ENV | grep -w "KERNEL_CONFIG" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
@@ -337,7 +337,7 @@ jobs:
       if: env.CHECK_FILE_IS_OK == 'true'
       uses: actions/upload-artifact@v4
       with:
-        name: AK3-LOS14-OPlus-SM8250${{ env.UPLOADNAME }}-${{ env.BUILD_TIME }}
+        name: AK3-Nameless14-SM8350${{ env.UPLOADNAME }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/*
 
     - name: Upload DTBO image
