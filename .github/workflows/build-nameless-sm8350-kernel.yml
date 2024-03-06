@@ -1,7 +1,5 @@
 name: Build Nameless SM8350 Kernel
 on:
-  schedule:
-    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
